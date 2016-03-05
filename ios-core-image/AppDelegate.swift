@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  ios-core-image
-//
-//  Created by Matt Mayo on 3/4/16.
-//  Copyright © 2016 Matt Mayo. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
