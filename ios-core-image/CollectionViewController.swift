@@ -1,4 +1,5 @@
 import UIKit
+import ImageIO
 
 private let reuseIdentifier = "collection-view-cell"
 
@@ -10,10 +11,16 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
         "Sextant Coffee"]
     private var cellWidth = UIScreen.mainScreen().bounds.width
     private let cellHeight = CGFloat(200)
+    private var noFilter = false
 
     // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Built in filters that are ready to go
+        for filter in CIFilter.filterNamesInCategory(kCICategoryBlur) {
+            print(filter)
+        }
     }
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -39,9 +46,23 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
+        
+        if (self.noFilter == true) {
+            cell.imageView.image = UIImage(contentsOfFile: self.images[indexPath.row])
+            cell.label.text = self.businessNames[indexPath.row]
+            return cell
+        }
     
         let imageUrl = self.images[indexPath.row]
-        cell.imageView.image = UIImage(contentsOfFile: imageUrl)
+        
+        // Apply a filter
+        let image = CIImage(contentsOfURL: NSURL(fileURLWithPath: imageUrl))
+        
+        // Apply tilt and shift
+        cell.imageView.image = UIImage(CGImage: self.applyFilterTiltAndShift(image!))
+        
+        // Apply auto fix
+        //cell.imageView.image = UIImage(CGImage: self.applyFilterAutoAdjustments(image!))
         cell.label.text = self.businessNames[indexPath.row]
         return cell
     }
@@ -79,6 +100,36 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     }
     
     private func toggleFilter() {
+        self.noFilter = self.noFilter == true ? false : true
+        self.collectionView?.reloadData()
         
+    }
+    
+    private func applyFilterAutoAdjustments(image: CIImage) -> CGImageRef {
+        var newImage = image
+        let context = CIContext(options: nil)
+        let filters = newImage.autoAdjustmentFiltersWithOptions([CIDetectorImageOrientation: 1])
+        for filter in filters {
+            filter.setValue(newImage, forKey: kCIInputImageKey)
+            newImage = filter.outputImage!
+        }
+        return context.createCGImage(newImage, fromRect: (newImage.extent))
+    }
+    
+    private func applyFilterTiltAndShift(image: CIImage) -> CGImageRef {
+        let context = CIContext(options: nil)
+        
+        let topGradientFilter = CIFilter(name: "CISmoothLinearGradient", withInputParameters: ["inputPoint0": CIVector(x: 0, y: 0), "inputPoint1": CIVector(x: 200, y: 200), "inputColor0": CIColor(color: UIColor.blackColor()), "inputColor1": CIColor(color: UIColor.whiteColor())])
+        //let blurFilter = CIFilter(name: "CIMedianFilter", withInputParameters: ["inputImage": image]
+        //let filter = CIFilter(name: "CISRGBToneCurveToLinear", withInputParameters: ["inputImage": image!])
+        //let filter = CIFilter(name: "CILinearToSRGBToneCurve", withInputParameters: ["inputImage": image!])
+        //let filter = CIFilter(name: "CIColorClamp", withInputParameters: ["inputImage": image!, "inputMinComponents": CIVector(x: 0, y: 0, z: 0, w: 0), "inputMaxComponents": CIVector(x: 170, y: 170, z: 170, w: 1)])
+        
+        // Step 4 Apply filter
+        let result: CIImage = topGradientFilter?.valueForKey(kCIOutputImageKey) as! CIImage
+        let rect = result.extent
+        
+        // Step 5 Extract image
+        return context.createCGImage(result, fromRect: rect)
     }
 }
