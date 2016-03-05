@@ -4,6 +4,10 @@ private let reuseIdentifier = "collection-view-cell"
 
 class CollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     private let images = NSBundle.mainBundle().pathsForResourcesOfType("jpg", inDirectory: nil)
+    private let businessNames = ["CREAM San Francisco", "Artis Coffee", "Verde Tea Cafe",
+        "(TFM) Tea For Me", "AK Subs", "Parktown Veterinary Clinic", "Tpumps", "Chromatic Coffee",
+        "Papabubble SF", "Dusty Buns Bistro", "V Cafe", "Super Cue Cafe", "Thai Recipe Cousine",
+        "Sextant Coffee"]
     private var cellWidth = UIScreen.mainScreen().bounds.width
     private let cellHeight = CGFloat(200)
 
@@ -38,6 +42,7 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     
         let imageUrl = self.images[indexPath.row]
         cell.imageView.image = UIImage(contentsOfFile: imageUrl)
+        cell.label.text = self.businessNames[indexPath.row]
         return cell
     }
     
@@ -58,8 +63,22 @@ class CollectionViewController: UICollectionViewController, UICollectionViewDele
     // MARK: - IBAction
     
     @IBAction func changeSizeTouched(sender: UIBarButtonItem) {
+        toggleSize()
+    }
+    
+    @IBAction func changeFilterTouched(sender: UIBarButtonItem) {
+        toggleFilter()
+    }
+    
+    // MARK: - Private func
+    
+    private func toggleSize() {
         let screenWidth = UIScreen.mainScreen().bounds.width
         self.cellWidth = (self.cellWidth == screenWidth) ? screenWidth / 2 : screenWidth
         self.collectionView?.reloadData()
+    }
+    
+    private func toggleFilter() {
+        
     }
 }

@@ -46,6 +46,12 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IfP-hP-Zv3">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Business" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iem-1D-aVN">
+                                            <rect key="frame" x="38" y="89" width="125" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
@@ -53,10 +59,13 @@
                                     <constraint firstAttribute="trailing" secondItem="IfP-hP-Zv3" secondAttribute="trailing" id="HGT-6H-Zfj"/>
                                     <constraint firstAttribute="bottom" secondItem="IfP-hP-Zv3" secondAttribute="bottom" id="Ifp-BI-WWJ"/>
                                     <constraint firstItem="IfP-hP-Zv3" firstAttribute="leading" secondItem="WNF-dL-lQm" secondAttribute="leading" id="LWH-xL-dXE"/>
+                                    <constraint firstItem="Iem-1D-aVN" firstAttribute="centerY" secondItem="WNF-dL-lQm" secondAttribute="centerY" id="auE-fo-hIu"/>
+                                    <constraint firstItem="Iem-1D-aVN" firstAttribute="centerX" secondItem="WNF-dL-lQm" secondAttribute="centerX" id="cqr-Bo-hcy"/>
                                     <constraint firstItem="IfP-hP-Zv3" firstAttribute="top" secondItem="WNF-dL-lQm" secondAttribute="top" id="ytR-Zs-gHO"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="imageView" destination="IfP-hP-Zv3" id="yQi-yP-MUu"/>
+                                    <outlet property="label" destination="Iem-1D-aVN" id="q3V-6D-3ak"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -71,7 +80,11 @@
                                 <action selector="changeSizeTouched:" destination="Pz9-sN-d7n" id="4pZ-8r-pYE"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Change filter" id="PYG-kg-rxP"/>
+                        <barButtonItem key="rightBarButtonItem" title="Change filter" id="PYG-kg-rxP">
+                            <connections>
+                                <action selector="changeFilterTouched:" destination="Pz9-sN-d7n" id="DxU-oS-lZ3"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lfh-4Z-VlI" userLabel="First Responder" sceneMemberID="firstResponder"/>
