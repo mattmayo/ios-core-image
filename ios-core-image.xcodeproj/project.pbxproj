@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7F1AE9141C8A2FA00016F4FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1AE9131C8A2FA00016F4FC /* AppDelegate.swift */; };
-		7F1AE9161C8A2FA00016F4FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1AE9151C8A2FA00016F4FC /* ViewController.swift */; };
 		7F1AE9191C8A2FA00016F4FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F1AE9171C8A2FA00016F4FC /* Main.storyboard */; };
 		7F1AE91B1C8A2FA00016F4FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F1AE91A1C8A2FA00016F4FC /* Assets.xcassets */; };
 		7F1AE91E1C8A2FA00016F4FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F1AE91C1C8A2FA00016F4FC /* LaunchScreen.storyboard */; };
@@ -33,7 +32,6 @@
 /* Begin PBXFileReference section */
 		7F1AE9101C8A2FA00016F4FC /* ios-core-image.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-core-image.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F1AE9131C8A2FA00016F4FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7F1AE9151C8A2FA00016F4FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7F1AE9181C8A2FA00016F4FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7F1AE91A1C8A2FA00016F4FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F1AE91D1C8A2FA00016F4FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				7F1AE91F1C8A2FA00016F4FC /* Info.plist */,
 				7F1AE91C1C8A2FA00016F4FC /* LaunchScreen.storyboard */,
 				7F1AE9171C8A2FA00016F4FC /* Main.storyboard */,
-				7F1AE9151C8A2FA00016F4FC /* ViewController.swift */,
 			);
 			path = "ios-core-image";
 			sourceTree = "<group>";
@@ -206,7 +203,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F1AE9431C8A377D0016F4FC /* CollectionViewController.swift in Sources */,
-				7F1AE9161C8A2FA00016F4FC /* ViewController.swift in Sources */,
 				7FD681461C8A9A2200253825 /* CollectionViewCell.swift in Sources */,
 				7F1AE9141C8A2FA00016F4FC /* AppDelegate.swift in Sources */,
 			);
