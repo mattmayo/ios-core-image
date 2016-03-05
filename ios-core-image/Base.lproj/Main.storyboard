@@ -66,7 +66,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="4lD-Xm-Zsv">
-                        <barButtonItem key="leftBarButtonItem" title="Change size" id="pkC-3o-29s"/>
+                        <barButtonItem key="leftBarButtonItem" title="Change size" id="pkC-3o-29s">
+                            <connections>
+                                <action selector="changeSizeTouched:" destination="Pz9-sN-d7n" id="4pZ-8r-pYE"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Change filter" id="PYG-kg-rxP"/>
                     </navigationItem>
                 </collectionViewController>

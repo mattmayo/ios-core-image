@@ -2,13 +2,21 @@ import UIKit
 
 private let reuseIdentifier = "collection-view-cell"
 
-class CollectionViewController: UICollectionViewController {
+class CollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     private let images = NSBundle.mainBundle().pathsForResourcesOfType("jpg", inDirectory: nil)
+    private var cellWidth = UIScreen.mainScreen().bounds.width
+    private let cellHeight = CGFloat(200)
 
+    // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        self.cellWidth = (self.cellWidth == screenWidth) ? size.width : size.width / 2
+        self.collectionViewLayout.invalidateLayout()
+    }
     /*
     // MARK: - Navigation
 
@@ -63,5 +71,26 @@ class CollectionViewController: UICollectionViewController {
     
     }
     */
-
+    
+    // MARK: - UICollectionViewDelegateFlowLayout
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        return CGSizeMake(cellWidth, cellHeight)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return CGFloat.min
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return CGFloat.min
+    }
+    
+    // MARK: - IBAction
+    
+    @IBAction func changeSizeTouched(sender: UIBarButtonItem) {
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        self.cellWidth = (self.cellWidth == screenWidth) ? screenWidth / 2 : screenWidth
+        self.collectionView?.reloadData()
+    }
 }
